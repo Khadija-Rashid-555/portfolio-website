@@ -1,0 +1,10 @@
+{
+  "name": "khadija-portfolio",
+  "version": "1.0.0",
+  "description": "Khadija Rashid's portfolio — Vercel deployment",
+  "license": "ISC",
+  "dependencies": {
+    "mongodb": "^6.3.0",
+    "nodemailer": "^9.0.1"
+  }
+}
