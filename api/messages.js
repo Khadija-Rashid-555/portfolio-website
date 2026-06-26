@@ -1,32 +1,39 @@
-// api/messages.js — Vercel Serverless Function
-// GET /api/messages?key=YOUR_ADMIN_KEY  →  returns all saved messages
-
 const { MongoClient } = require('mongodb');
-
-const MONGODB_URI = process.env.MONGODB_URI;
-const DB_NAME = 'portfolio';
-const COLLECTION = 'messages';
-
+ 
 module.exports = async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
-
-  if (req.method !== 'GET') return res.status(405).json({ error: 'Method not allowed.' });
-
+ 
+  // ── auth check ─────────────────────────────────────────────────────────
   const key = req.query.key;
-  if (!process.env.ADMIN_KEY || key !== process.env.ADMIN_KEY) {
-    return res.status(401).json({ error: 'Unauthorized' });
+  if (!key || key !== process.env.ADMIN_KEY) {
+    return res.status(401).json({ error: 'Unauthorized. Provide ?key=YOUR_ADMIN_KEY' });
   }
-
-  const client = new MongoClient(MONGODB_URI);
+ 
+  if (req.method !== 'GET') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
+ 
+  // ── fetch from MongoDB ─────────────────────────────────────────────────
   try {
+    const client = new MongoClient(process.env.MONGODB_URI);
     await client.connect();
-    const db = client.db(DB_NAME);
-    const messages = await db.collection(COLLECTION).find({}).sort({ receivedAt: -1 }).toArray();
-    return res.status(200).json(messages);
-  } catch (err) {
-    console.error('MongoDB read failed:', err.message);
-    return res.status(500).json({ error: 'Could not retrieve messages.' });
-  } finally {
+    const db = client.db('portfolio');
+    const messages = await db
+      .collection('messages')
+      .find({})
+      .sort({ createdAt: -1 })
+      .limit(100)
+      .toArray();
     await client.close();
+ 
+    return res.status(200).json({
+      success: true,
+      count: messages.length,
+      messages
+    });
+  } catch (err) {
+    console.error('[messages] MongoDB error:', err.message);
+    return res.status(500).json({ error: 'Failed to fetch messages.' });
   }
 };
+ 
