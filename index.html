@@ -672,6 +672,123 @@ nav{
 
 
 
+
+/* ============================================================
+   RESPONSIVE — laptop, tablet & mobile friendly (additive)
+   ============================================================ */
+.nav-toggle{display:none;background:transparent;border:1.5px solid var(--pink);color:var(--pink);width:40px;height:40px;border-radius:10px;cursor:pointer;align-items:center;justify-content:center;padding:0;}
+.nav-toggle:hover{background:rgba(255,45,139,.12);}
+.nav-toggle .bar{display:block;width:18px;height:2px;background:var(--pink);position:relative;transition:all .25s;}
+.nav-toggle .bar::before,.nav-toggle .bar::after{content:'';position:absolute;left:0;width:18px;height:2px;background:var(--pink);transition:all .25s;}
+.nav-toggle .bar::before{top:-6px;}
+.nav-toggle .bar::after{top:6px;}
+.nav-toggle.open .bar{background:transparent;}
+.nav-toggle.open .bar::before{top:0;transform:rotate(45deg);}
+.nav-toggle.open .bar::after{top:0;transform:rotate(-45deg);}
+
+@media (max-width:1200px){
+  #hero{padding:6rem 3rem 3rem;gap:1.5rem;}
+  nav{padding:1rem 2rem;}
+  .nav-links{gap:1.4rem;}
+  .sec{padding:5rem 2rem;}
+  .about-3col{grid-template-columns:300px 1fr 220px;gap:1.8rem;}
+  .about-photo-frame{width:300px;height:400px;}
+}
+@media (max-width:1024px){
+  nav{padding:.9rem 1.5rem;}
+  .nav-links{gap:1rem;}
+  .nav-links a{font-size:.72rem;}
+  #hero{padding:6rem 2rem 3rem;}
+  .hero-h1 .l1,.hero-h1 .l2{font-size:clamp(2.6rem,6vw,4.2rem);}
+  .av-scene{width:300px;height:300px;}
+  .contact-grid{gap:3rem;}
+}
+@media (max-width:900px){
+  nav{padding:.9rem 1.2rem;}
+  .nav-toggle{display:inline-flex;}
+  .nav-links{
+    position:fixed;top:62px;left:0;right:0;
+    flex-direction:column;align-items:flex-start;
+    gap:.2rem;padding:1rem 1.5rem 1.5rem;
+    background:rgba(8,3,14,.96);backdrop-filter:blur(28px);
+    border-bottom:1px solid rgba(255,45,139,.18);
+    transform:translateY(-12px);opacity:0;pointer-events:none;
+    transition:opacity .25s ease,transform .25s ease;
+    max-height:calc(100vh - 62px);overflow-y:auto;
+  }
+  .nav-links.open{transform:translateY(0);opacity:1;pointer-events:auto;}
+  .nav-links li{width:100%;}
+  .nav-links a{display:block;padding:.85rem .4rem;font-size:.85rem;border-bottom:1px solid rgba(255,45,139,.08);}
+  .nav-links a.nav-cta{display:inline-block;margin-top:.6rem;border-bottom:1.5px solid var(--pink);}
+  #hero{grid-template-columns:1fr;padding:6rem 1.5rem 3rem;}
+  .hero-right{order:-1;}
+  .av-scene{width:260px;height:260px;}
+  .contact-grid{grid-template-columns:1fr;gap:2.5rem;}
+  .cv-cols{grid-template-columns:1fr;gap:2rem;}
+  .edu-card{padding:2rem;}
+  .stats-row{gap:1.8rem;}
+}
+@media (max-width:640px){
+  nav{padding:.8rem 1rem;}
+  .nav-logo{font-size:.85rem;letter-spacing:1.5px;}
+  #hero{padding:5.5rem 1.2rem 2.5rem;gap:1.2rem;}
+  .hero-h1 .l1,.hero-h1 .l2{font-size:clamp(2.2rem,10vw,3.2rem);letter-spacing:-1px;}
+  .hero-h1 .l3{font-size:.95rem;letter-spacing:4px;}
+  .hero-tagline{font-size:.95rem;padding-left:.8rem;}
+  .badge{font-size:.6rem;padding:.35rem 1rem;}
+  .btns{gap:.6rem;}
+  .btn-p,.btn-o{padding:.75rem 1.4rem;font-size:.82rem;flex:1;text-align:center;justify-content:center;}
+  .av-scene{width:220px;height:220px;}
+  .av-ring-outer{inset:-22px;}
+  .av-ring-mid{inset:-10px;}
+  .orb-node{width:42px;height:42px;font-size:.5rem;}
+  .orb-node:nth-child(1){right:-42px;}
+  .orb-node:nth-child(3){left:-42px;}
+  .stats-row{gap:1.2rem;}
+  .stat-val{font-size:1.5rem;}
+  .stat-lbl{font-size:.55rem;letter-spacing:2px;}
+  .sec{padding:3.5rem 1.2rem;}
+  .s-h{font-size:clamp(1.5rem,6vw,2rem);}
+  .divider{margin:.8rem 0 2rem;}
+  .about-3col{grid-template-columns:1fr;gap:1.5rem;}
+  .about-photo-frame{width:100%;max-width:320px;height:380px;margin:0 auto;}
+  .ab-photo-col{padding-top:0;}
+  .ab-cards{display:grid !important;grid-template-columns:1fr 1fr;gap:.8rem;}
+  .ab-card{padding:1.1rem 1.2rem;}
+  .ab-card-val{font-size:1rem;}
+  .sk-grid{grid-template-columns:1fr;gap:.9rem;}
+  .sk-card{padding:1.2rem;}
+  .subj-grid{grid-template-columns:1fr 1fr;gap:.6rem;}
+  .subj-pill{padding:.6rem .8rem;font-size:.65rem;}
+  .proj-grid{grid-template-columns:1fr;gap:1.2rem;}
+  .proj-card{padding:1.5rem;}
+  .edu-card{padding:1.6rem 1.4rem;border-radius:18px;}
+  .edu-deg{font-size:1.05rem;}
+  .cv-card{padding:1.5rem;}
+  .cv-row{gap:.6rem;}
+  .cv-btn{padding:.6rem 1.1rem;font-size:.7rem;}
+  .cv-embed-title{font-size:1.25rem;}
+  .c-head{font-size:1.4rem;}
+  .c-link{padding:.65rem .9rem;font-size:.72rem;}
+  footer{flex-direction:column;gap:.8rem;padding:1.4rem 1.2rem;text-align:center;}
+  .f-copy{font-size:.62rem;letter-spacing:1.5px;}
+  .orb1,.orb2,.orb3{filter:blur(70px);opacity:.7;}
+  .code-world .cf{display:none;}
+  .tech-badge{transform:scale(.8);}
+  .side-chain{display:none !important;}
+}
+@media (max-width:380px){
+  .hero-h1 .l1,.hero-h1 .l2{font-size:2rem;}
+  .av-scene{width:190px;height:190px;}
+  .ab-cards{grid-template-columns:1fr !important;}
+  .subj-grid{grid-template-columns:1fr;}
+  .btn-p,.btn-o{width:100%;flex:none;}
+}
+@media (max-height:520px) and (orientation:landscape){
+  #hero{min-height:auto;padding-top:5rem;}
+  .av-scene{width:180px;height:180px;}
+}
+
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
@@ -731,9 +848,6 @@ nav{
   <div class="cf" style="bottom:25%;right:20%;font-size:28px;animation-duration:18s;animation-delay:3s;">;</div>
 
   <!-- TECH BADGES -->
-  <div class="tech-badge" style="top:54%;left:8%;animation-delay:0s;"><span class="bi">🌐</span>JS</div>
-  <div class="tech-badge" style="top:72%;left:3%;animation-delay:.6s;"><span class="bi">🎨</span>CSS</div>
-  <div class="tech-badge" style="bottom:8%;right:22%;animation-delay:1.2s;"><span class="bi">📄</span>HTML</div>
 
   <!-- SPARKLES -->
   <div class="spark" style="top:18%;left:42%;animation-duration:2.2s;animation-delay:0s;"></div>
@@ -745,14 +859,12 @@ nav{
   <div class="spark" style="top:20%;left:68%;animation-duration:2.6s;animation-delay:2s;"></div>
   <div class="spark" style="bottom:42%;left:18%;animation-duration:2.4s;animation-delay:1s;"></div>
 
-  <!-- ICONS -->
-  <div style="position:absolute;bottom:22%;left:50%;font-size:28px;opacity:.2;animation:float3d 18s infinite;animation-delay:2s;">☕</div>
-  <div style="position:absolute;bottom:40%;left:46%;font-size:22px;opacity:.18;animation:float3d 22s infinite;animation-delay:4s;">🐛</div>
 </div>
 
 <nav>
   <div class="nav-logo">DEV<span>//</span>KHADIJA</div>
-  <ul class="nav-links">
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false"><span class="bar"></span></button>
+  <ul class="nav-links" id="navLinks">
     <li><a href="#about">about</a></li>
     <li><a href="#skills">skills</a></li>
     <li><a href="#projects">projects</a></li>
@@ -2058,5 +2170,23 @@ const CONTACT_API_URL = '/api/contact';
 })();
 
 </script>
+
+<script>
+(function(){
+  var btn = document.getElementById('navToggle');
+  var links = document.getElementById('navLinks');
+  if(!btn || !links) return;
+  function close(){ btn.classList.remove('open'); links.classList.remove('open'); btn.setAttribute('aria-expanded','false'); }
+  function toggle(){
+    var open = links.classList.toggle('open');
+    btn.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  btn.addEventListener('click', toggle);
+  links.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', close); });
+  window.addEventListener('resize', function(){ if(window.innerWidth > 900) close(); });
+})();
+</script>
+
 </body>
 </html>
